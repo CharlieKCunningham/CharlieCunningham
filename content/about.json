@@ -1,0 +1,17 @@
+{
+  "heading": "About Me",
+  "tagline": "Notes on code, projects, and whatever else I'm into this month.",
+  "body": "Hi, I'm Charlie Cunningham. I'm a developer who likes building things end to end, from a scrappy idea to something real people can use — usually favoring a boring, well-understood stack over the trendiest option.\n\nThis site is where I write up projects, experiments, and things I've learned along the way: what shipped, what broke, and what I'd do differently next time. It's a hand-built static site with no database and no tracking scripts I didn't put there myself.\n\nThanks for stopping by — feel free to reach out using the links below.",
+  "socialLinks": [
+    {
+      "label": "Email me",
+      "url": "mailto:charliecunningham2005@gmail.com",
+      "type": "email"
+    },
+    {
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/in/REPLACE_ME",
+      "type": "linkedin"
+    }
+  ]
+}

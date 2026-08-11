@@ -1,0 +1,137 @@
+/*
+ * layout.css
+ * Page / header / footer / section-level layout.
+ */
+
+main {
+  display: block;
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+  padding: var(--space-6) var(--space-5) var(--space-8);
+}
+
+/* ---- Header ---- */
+
+.site-header {
+  border-bottom: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+}
+
+.site-header__inner {
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+  padding: var(--space-4) var(--space-5);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.site-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--color-heading);
+  text-decoration: none;
+  margin-right: auto;
+}
+
+.site-title:hover {
+  color: var(--color-accent);
+}
+
+/* Nav sits next to the title; contact links float to the right on wide
+   screens and wrap below on narrow ones (see responsive.css). */
+.site-nav {
+  display: flex;
+  align-items: center;
+}
+
+.site-nav__menu {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: var(--space-4);
+}
+
+.site-nav__menu li {
+  margin: 0;
+}
+
+.site-nav__menu a {
+  text-decoration: none;
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.site-nav__menu a:hover {
+  color: var(--color-accent);
+}
+
+/* Mobile nav toggle button: hidden on desktop, shown via responsive.css. */
+.nav-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: var(--space-2) var(--space-3);
+  cursor: pointer;
+}
+
+/* ---- Sections ---- */
+
+.about-section,
+.featured-article-section,
+.article-list-section {
+  margin-bottom: var(--space-7);
+}
+
+.about-section__body {
+  color: var(--color-text);
+}
+
+.about-section__photo {
+  float: right;
+  margin: 0 0 var(--space-4) var(--space-5);
+  max-width: 180px;
+}
+
+.about-section__photo img {
+  border-radius: 50%;
+}
+
+/* ---- Article page ---- */
+
+.article-page__header {
+  margin-bottom: var(--space-5);
+}
+
+.article-page__title {
+  margin-top: 0;
+}
+
+.article-page__meta {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+}
+
+.article-page__body {
+  max-width: var(--content-max-width);
+}
+
+/* ---- Footer ---- */
+
+.site-footer {
+  border-top: 1px solid var(--color-border);
+  margin-top: var(--space-8);
+  padding: var(--space-5);
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+.site-footer p {
+  margin: 0;
+}

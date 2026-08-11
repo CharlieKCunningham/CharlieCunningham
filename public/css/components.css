@@ -1,0 +1,161 @@
+/*
+ * components.css
+ * Reusable components: article list, featured article, tag chips,
+ * contact links, buttons/links.
+ */
+
+/* ---- Contact links ---- */
+
+.contact-links {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: var(--space-3);
+}
+
+.contact-links__item a {
+  display: inline-block;
+  text-decoration: none;
+  color: var(--color-text);
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: var(--space-1) var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+}
+
+.contact-links__item a:hover {
+  color: var(--color-accent-contrast);
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+/* ---- Tag chips ---- */
+
+.article-page__tags {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: var(--space-3) 0 0;
+  padding: 0;
+}
+
+.tag-chip {
+  display: inline-block;
+  background-color: var(--color-tag-bg);
+  color: var(--color-tag-text);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: var(--space-1) var(--space-3);
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+/* ---- Cover images ---- */
+
+.cover-image {
+  width: 100%;
+  border-radius: var(--radius);
+  margin-bottom: var(--space-4);
+}
+
+/* ---- Featured article ---- */
+/* Visually distinct from the plain list: larger type, tinted background,
+   a border - since it's the highlighted "most recent" article. */
+
+.featured-article {
+  background-color: var(--color-featured-bg);
+  border: 1px solid var(--color-featured-border);
+  border-radius: var(--radius);
+  padding: var(--space-5);
+}
+
+.featured-article__title {
+  margin-top: 0;
+  font-size: 1.75rem;
+}
+
+.featured-article__title a {
+  text-decoration: none;
+  color: var(--color-heading);
+}
+
+.featured-article__title a:hover {
+  color: var(--color-accent);
+}
+
+.featured-article__meta {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  margin-bottom: var(--space-3);
+}
+
+.featured-article__summary {
+  font-size: 1.05rem;
+  margin-bottom: var(--space-4);
+}
+
+.featured-article__link {
+  display: inline-block;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+/* ---- Article list (vertical list, NOT a grid) ---- */
+
+.article-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.article-list-item {
+  padding: var(--space-5) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.article-list-item:first-child {
+  padding-top: 0;
+}
+
+.article-list-item:last-child {
+  border-bottom: none;
+}
+
+.article-list-item .cover-image {
+  max-width: 320px;
+}
+
+.article-list-item__title {
+  margin: 0 0 var(--space-1);
+  font-size: 1.2rem;
+}
+
+.article-list-item__title a {
+  text-decoration: none;
+  color: var(--color-heading);
+}
+
+.article-list-item__title a:hover {
+  color: var(--color-accent);
+}
+
+.article-list-item__meta {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  margin-bottom: var(--space-2);
+}
+
+.article-list-item__summary {
+  margin-bottom: 0;
+}
+
+.no-articles {
+  color: var(--color-text-muted);
+}

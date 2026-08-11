@@ -1,0 +1,379 @@
+/* Functional styling only - this is a local dev tool, not the public site. */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: #f4f4f5;
+  color: #1a1a1a;
+}
+
+.warning-banner {
+  background: #b91c1c;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+.warning-banner strong {
+  margin-right: 0.4em;
+}
+
+.page {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+}
+
+h1 {
+  margin-top: 0;
+}
+
+.hint {
+  color: #555;
+  font-size: 0.9rem;
+}
+
+.hint code {
+  background: #e5e5e5;
+  padding: 0.1em 0.35em;
+  border-radius: 3px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.field--checkbox label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: normal;
+}
+
+label {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.required {
+  color: #b91c1c;
+}
+
+.hint-inline {
+  font-weight: normal;
+  color: #666;
+  font-size: 0.85rem;
+}
+
+input[type="text"],
+input[type="datetime-local"],
+input[type="file"],
+textarea {
+  font: inherit;
+  padding: 0.5rem 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+}
+
+textarea {
+  resize: vertical;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.9rem;
+}
+
+#body {
+  min-height: 320px;
+}
+
+.char-counter {
+  align-self: flex-end;
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.char-counter.over-limit {
+  color: #b91c1c;
+  font-weight: bold;
+}
+
+.field--submit {
+  margin-top: 0.5rem;
+}
+
+button[type="submit"] {
+  font: inherit;
+  font-weight: 600;
+  padding: 0.7rem 1.25rem;
+  background: #1a1a1a;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  align-self: flex-start;
+}
+
+button[type="submit"]:hover {
+  background: #333;
+}
+
+button[type="submit"]:disabled {
+  background: #999;
+  cursor: not-allowed;
+}
+
+.messages {
+  margin-top: 1.25rem;
+}
+
+.message {
+  padding: 0.75rem 1rem;
+  border-radius: 4px;
+  margin-bottom: 0.75rem;
+  font-size: 0.9rem;
+}
+
+.message--success {
+  background: #dcfce7;
+  border: 1px solid #16a34a;
+  color: #14532d;
+}
+
+.message--error {
+  background: #fee2e2;
+  border: 1px solid #b91c1c;
+  color: #7f1d1d;
+}
+
+.message--warning {
+  background: #fef9c3;
+  border: 1px solid #ca8a04;
+  color: #713f12;
+}
+
+.message ul {
+  margin: 0.4em 0 0;
+  padding-left: 1.2em;
+}
+
+/* --- Nav (New Article / Manage Articles) --- */
+
+.tool-nav {
+  display: flex;
+  gap: 1rem;
+  padding: 0.75rem 1.5rem;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+}
+
+.tool-nav__link {
+  color: #333;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+}
+
+.tool-nav__link:hover {
+  background: #f0f0f0;
+}
+
+.tool-nav__link--active {
+  background: #1a1a1a;
+  color: #fff;
+}
+
+.tool-nav__link--active:hover {
+  background: #1a1a1a;
+}
+
+/* --- Cancel-edit link --- */
+
+.field--submit {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.cancel-link {
+  color: #555;
+  font-size: 0.9rem;
+}
+
+/* --- Manage Articles list --- */
+
+#article-list.article-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.article-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+}
+
+.article-row__main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+}
+
+.article-row__title {
+  font-weight: 600;
+}
+
+.article-row__draft-badge {
+  align-self: flex-start;
+  background: #fef9c3;
+  color: #713f12;
+  border: 1px solid #ca8a04;
+  border-radius: 3px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  padding: 0.1em 0.4em;
+}
+
+.article-row__meta {
+  color: #666;
+  font-size: 0.8rem;
+  word-break: break-word;
+}
+
+.article-row__actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.article-row__edit-link {
+  font: inherit;
+  font-weight: 600;
+  padding: 0.4rem 0.9rem;
+  background: #1a1a1a;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.article-row__edit-link:hover {
+  background: #333;
+}
+
+.article-row__delete-btn {
+  font: inherit;
+  font-weight: 600;
+  padding: 0.4rem 0.9rem;
+  background: #fff;
+  color: #b91c1c;
+  border: 1px solid #b91c1c;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.article-row__delete-btn:hover {
+  background: #fee2e2;
+}
+
+/* --- Publish panel --- */
+
+.publish-panel:empty {
+  display: none;
+}
+
+.publish-panel {
+  margin-top: 1.5rem;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+}
+
+.publish-panel h2 {
+  margin-top: 0;
+  font-size: 1.1rem;
+}
+
+.publish-status {
+  margin-bottom: 1rem;
+}
+
+.publish-status__heading {
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 0.35rem;
+}
+
+.publish-file-list {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.85rem;
+  background: #f4f4f5;
+  border-radius: 4px;
+  padding: 0.6rem 0.9rem 0.6rem 1.6rem;
+  margin: 0;
+}
+
+.publish-panel textarea {
+  font: inherit;
+  padding: 0.5rem 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  resize: vertical;
+}
+
+.publish-btn {
+  font: inherit;
+  font-weight: 600;
+  padding: 0.6rem 1.1rem;
+  background: #15803d;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 0.75rem;
+}
+
+.publish-btn:hover {
+  background: #166534;
+}
+
+.publish-btn:disabled {
+  background: #999;
+  cursor: not-allowed;
+}
+
+.publish-result {
+  margin-top: 0.75rem;
+}

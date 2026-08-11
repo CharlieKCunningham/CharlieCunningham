@@ -1,0 +1,10 @@
+{
+  "slug": "shipping-a-small-side-project",
+  "title": "Shipping a Small Side Project End to End",
+  "publishedAt": "2026-07-20T08:00",
+  "summary": "Notes from finally shipping a weekend project instead of letting it rot in a private repo — scope small, ship ugly, iterate later.",
+  "body": "I have a graveyard of half-built side projects, and honestly, most of them died from the same disease: scope creep before the first version ever shipped. This month I finally broke the pattern and shipped something small end to end, so I wanted to write down what actually worked.\n\n## Rules I set for myself\n\n1. **Pick a scope so small it feels almost embarrassing.** If it doesn't feel a little too simple, it's still too big.\n2. **No new dependencies unless something breaks without one.** It's easy to lose a weekend to tooling instead of the actual idea.\n3. **Deploy on day one**, even with a single hardcoded page. Getting a real URL out early keeps the project honest.\n\n## What actually happened\n\nThe first deployable version took about two hours. It was ugly — no styling to speak of, a single page, hardcoded content. But it was *live*, and that changed how I thought about the next steps. Every feature after that got compared against \"is this worth delaying the next deploy for,\" and most weren't.\n\n> The version you ship beats the version you're still perfecting.\n\n## What's next\n\nI'm going to keep iterating in public rather than batching up a big rewrite. If you're sitting on a project that's 80% done and has been for months, my advice is simple: cut scope until you can ship *something* this week, then build from there.",
+  "tags": ["projects", "shipping"],
+  "author": "Charlie Cunningham",
+  "draft": false
+}

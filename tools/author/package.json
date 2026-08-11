@@ -1,0 +1,16 @@
+{
+  "name": "chazzasblog-author-tool",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Local-only authoring tool for ChazzasBlog. Never deployed, never used by CI/CD.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1",
+    "express": "^4.21.2",
+    "multer": "^2.0.0"
+  }
+}

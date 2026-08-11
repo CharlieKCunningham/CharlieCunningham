@@ -1,0 +1,15 @@
+{
+  "name": "chazzasblog",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Charlie Cunningham's personal blog - static site generated from JSON content.",
+  "scripts": {
+    "build": "node build/build.js"
+  },
+  "dependencies": {
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1",
+    "markdown-it": "^14.1.0",
+    "sanitize-html": "^2.13.1"
+  }
+}

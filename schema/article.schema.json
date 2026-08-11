@@ -1,0 +1,60 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://chazzasblog/schema/article.schema.json",
+  "title": "Article",
+  "description": "Schema for a single blog article JSON file stored in content/articles/.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["slug", "title", "publishedAt", "summary", "body"],
+  "properties": {
+    "slug": {
+      "type": "string",
+      "description": "Kebab-case unique identifier for the article, used in the URL and as the filename prefix suffix.",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "publishedAt": {
+      "type": "string",
+      "description": "Local date-time as produced by an HTML datetime-local input, e.g. 2026-08-11T09:30. Canonical sort key. Not timezone-aware.",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}$"
+    },
+    "updatedAt": {
+      "type": "string",
+      "description": "Same format as publishedAt.",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}$"
+    },
+    "summary": {
+      "type": "string",
+      "maxLength": 300,
+      "minLength": 1
+    },
+    "body": {
+      "type": "string",
+      "description": "Markdown source, NOT pre-rendered HTML.",
+      "minLength": 1
+    },
+    "coverImage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["src", "alt"],
+      "properties": {
+        "src": { "type": "string", "minLength": 1 },
+        "alt": { "type": "string", "minLength": 1 }
+      }
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "author": {
+      "type": "string"
+    },
+    "draft": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

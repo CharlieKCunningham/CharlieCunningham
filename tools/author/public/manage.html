@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>ChazzasBlog - Manage Articles</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="/form.css">
+</head>
+<body>
+  <header class="warning-banner">
+    <strong>LOCAL DEVELOPMENT TOOL ONLY.</strong>
+    Runs on 127.0.0.1:3001. Never expose this to the internet or deploy it.
+  </header>
+
+  <nav class="tool-nav">
+    <a href="/index.html" class="tool-nav__link">New Article</a>
+    <a href="/manage.html" class="tool-nav__link tool-nav__link--active">Manage Articles</a>
+  </nav>
+
+  <main class="page">
+    <h1>Manage Articles</h1>
+    <p class="hint">
+      Edit or delete existing articles. Deleting removes the JSON file and its
+      <code>content/images/articles/&lt;slug&gt;/</code> folder immediately - this tool
+      does not touch git by itself, so nothing is actually gone from GitHub until you
+      review and click "Push to GitHub" below.
+    </p>
+
+    <div id="list-status" class="hint">Loading articles...</div>
+    <ul id="article-list" class="article-list"></ul>
+
+    <div id="messages" class="messages" role="status" aria-live="polite"></div>
+    <div id="publish-panel" class="publish-panel"></div>
+  </main>
+
+  <template id="article-row-template">
+    <li class="article-row">
+      <div class="article-row__main">
+        <span class="article-row__title"></span>
+        <span class="article-row__draft-badge" hidden>DRAFT</span>
+        <div class="article-row__meta"></div>
+      </div>
+      <div class="article-row__actions">
+        <a class="article-row__edit-link">Edit</a>
+        <button type="button" class="article-row__delete-btn">Delete</button>
+      </div>
+    </li>
+  </template>
+
+  <script src="/publish.js"></script>
+  <script src="/manage.js"></script>
+</body>
+</html>

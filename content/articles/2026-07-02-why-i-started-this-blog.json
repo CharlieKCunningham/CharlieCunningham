@@ -1,0 +1,10 @@
+{
+  "slug": "why-i-started-this-blog",
+  "title": "Why I Started This Blog",
+  "publishedAt": "2026-07-02T18:15",
+  "summary": "Some thoughts on why a personal, hand-rolled static site beats another profile on someone else's platform.",
+  "body": "I've started and abandoned a handful of \"I'm going to write more\" projects over the years — a Medium account, a Notion page I made public once, a half-finished newsletter. They all fizzled out for the same reason: I never felt like I actually *owned* the thing.\n\n## What I wanted instead\n\nA few requirements I kept coming back to:\n\n- **No platform risk.** If a company shuts down or changes its terms, my writing shouldn't disappear with it.\n- **No tracking I didn't choose.** Most blogging platforms ship analytics and ad scripts I never asked for.\n- **Fast, boring, and durable.** Plain HTML loads instantly and will still work in ten years.\n\nSo I built exactly that: articles as JSON files in a git repo, a small Node script that renders them to static HTML, and [GitHub Pages](https://pages.github.com/) for hosting. No server, no database, no login page for strangers to poke at.\n\n## The trade-off\n\nIt's slower to publish than typing into a text box on someone else's site — I have to run a local tool, review a diff, and push a commit. Honestly, that friction is a feature. It means everything that ends up live here is something I actually meant to publish.\n\nMore posts soon.",
+  "tags": ["meta", "static-sites"],
+  "author": "Charlie Cunningham",
+  "draft": false
+}

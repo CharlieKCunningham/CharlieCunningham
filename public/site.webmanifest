@@ -1,0 +1,14 @@
+{
+  "name": "Charlie Cunningham's Blog",
+  "short_name": "Chazza's Blog",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    }
+  ],
+  "theme_color": "#1d4ed8",
+  "background_color": "#ffffff",
+  "display": "standalone"
+}

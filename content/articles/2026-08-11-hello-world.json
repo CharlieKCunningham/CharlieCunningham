@@ -1,0 +1,10 @@
+{
+  "slug": "hello-world",
+  "title": "Hello, World",
+  "publishedAt": "2026-08-11T09:30",
+  "summary": "The first post on this blog: why it exists, how it's built, and what's coming next.",
+  "body": "This is the first post on my new blog. I wanted a place that's fully mine — no platform lock-in, no tracking scripts I didn't put there myself, just a simple static site I can write to whenever I feel like it.\n\n## How it's built\n\nThe whole thing is refreshingly boring on purpose:\n\n- Articles live as plain JSON files in a git repo\n- A small Node build script turns them into static HTML\n- The static output deploys straight to GitHub Pages\n\nThere's no database and no public write endpoint, so there's nothing on the live site for anyone but me to tamper with.\n\n## What's next\n\nExpect posts about whatever I'm building or learning at the time — sometimes code, sometimes not. Thanks for reading the very first one.",
+  "tags": ["meta", "introduction"],
+  "author": "Charlie Cunningham",
+  "draft": false
+}

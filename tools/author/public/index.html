@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>ChazzasBlog - Local Authoring Tool</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="/form.css">
+</head>
+<body>
+  <header class="warning-banner">
+    <strong>LOCAL DEVELOPMENT TOOL ONLY.</strong>
+    Runs on 127.0.0.1:3001. Never expose this to the internet or deploy it.
+  </header>
+
+  <nav class="tool-nav">
+    <a href="/index.html" class="tool-nav__link tool-nav__link--active">New Article</a>
+    <a href="/manage.html" class="tool-nav__link">Manage Articles</a>
+  </nav>
+
+  <main class="page">
+    <h1 id="page-heading">New Article</h1>
+    <p class="hint" id="page-hint">
+      Fill this in, submit, then review what changed and click "Push to GitHub"
+      when you're happy with it. Saving here never touches git by itself.
+    </p>
+
+    <form id="article-form" novalidate>
+      <div class="field">
+        <label for="title">Title <span class="required">*</span></label>
+        <input type="text" id="title" name="title" required maxlength="200">
+      </div>
+
+      <div class="field">
+        <label for="slug">Slug <span class="hint-inline">(auto-suggested from title, editable)</span></label>
+        <input type="text" id="slug" name="slug" maxlength="200" placeholder="auto-generated-from-title">
+      </div>
+
+      <div class="field">
+        <label for="publishedAt">Published <span class="required">*</span></label>
+        <input type="datetime-local" id="publishedAt" name="publishedAt" required>
+      </div>
+
+      <div class="field" id="updatedAt-field">
+        <label for="updatedAt">Updated <span class="hint-inline" id="updatedAt-hint">(optional)</span></label>
+        <input type="datetime-local" id="updatedAt" name="updatedAt">
+      </div>
+
+      <div class="field">
+        <label for="summary">Summary <span class="required">*</span> <span class="hint-inline">(max 300 characters)</span></label>
+        <textarea id="summary" name="summary" maxlength="300" rows="3" required></textarea>
+        <div class="char-counter"><span id="summary-count">0</span>/300</div>
+      </div>
+
+      <div class="field">
+        <label for="body">Body <span class="required">*</span> <span class="hint-inline">(Markdown source)</span></label>
+        <textarea id="body" name="body" rows="20" required spellcheck="true"></textarea>
+      </div>
+
+      <div class="field">
+        <label for="coverImage">Cover Image <span class="hint-inline">(optional, .jpg/.jpeg/.png/.webp/.gif, max 5MB)</span></label>
+        <input type="file" id="coverImage" name="coverImage" accept="image/*">
+        <div class="hint-inline" id="current-image-hint"></div>
+      </div>
+
+      <div class="field">
+        <label for="alt">Alt Text <span class="hint-inline" id="alt-hint">(required if an image is chosen)</span></label>
+        <input type="text" id="alt" name="alt" maxlength="300">
+      </div>
+
+      <div class="field">
+        <label for="tags">Tags <span class="hint-inline">(comma-separated)</span></label>
+        <input type="text" id="tags" name="tags" placeholder="e.g. meta, introduction">
+      </div>
+
+      <div class="field">
+        <label for="author">Author <span class="hint-inline">(optional)</span></label>
+        <input type="text" id="author" name="author" placeholder="Charlie Cunningham">
+      </div>
+
+      <div class="field field--checkbox">
+        <label for="draft">
+          <input type="checkbox" id="draft" name="draft">
+          Save as draft (excluded from the build unless INCLUDE_DRAFTS=1)
+        </label>
+      </div>
+
+      <div class="field field--submit">
+        <button type="submit" id="submit-btn">Save Article</button>
+        <a href="/manage.html" id="cancel-edit-link" class="cancel-link" hidden>Cancel edit</a>
+      </div>
+    </form>
+
+    <div id="messages" class="messages" role="status" aria-live="polite"></div>
+    <div id="publish-panel" class="publish-panel"></div>
+  </main>
+
+  <script src="/publish.js"></script>
+  <script src="/form.js"></script>
+</body>
+</html>

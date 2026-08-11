@@ -1,0 +1,10 @@
+{
+  "slug": "a-technical-note-on-build-pipelines",
+  "title": "A Technical Note on Keeping Build Pipelines Boring",
+  "publishedAt": "2026-08-05T13:45",
+  "summary": "Why I'd rather have a build script I can read top to bottom in five minutes than a clever framework I have to look up every time.",
+  "body": "Every time I evaluate a new static site generator, I end up asking the same question: could I explain exactly what this does to another engineer in five minutes? For most of the popular options, the honest answer is no — there's a plugin system, a config resolution order, and a handful of \"magic\" conventions to memorize first.\n\n## Boring on purpose\n\nFor this site, the entire pipeline is a handful of plain Node scripts:\n\n- Read and validate JSON content against a schema\n- Render Markdown to sanitized HTML\n- Stamp the result into a couple of HTML templates with simple curly-brace token substitution\n- Write files to `dist/`\n\nThat's it. No plugin ecosystem, no build cache to invalidate, no config DSL. When something breaks, I can read the whole thing in one sitting and know exactly where to look.\n\n## Validation at the boundary\n\nThe part I care about most isn't the templating, it's validating content *before* anything gets rendered. Every article is checked against a JSON Schema before the build touches it, so a malformed date or a missing required field fails loudly and immediately instead of producing a broken page somewhere in `dist/`.\n\n```\ncontent (JSON) → schema validation → markdown → sanitize → templates → dist/\n```\n\n## The takeaway\n\n**Boring technology is a feature, not a compromise.** A pipeline you fully understand is one you can actually trust, and trust matters more than cleverness for something as low-stakes and long-lived as a personal blog.",
+  "tags": ["technical", "static-sites", "build-tools"],
+  "author": "Charlie Cunningham",
+  "draft": false
+}

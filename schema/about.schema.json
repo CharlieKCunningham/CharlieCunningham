@@ -1,0 +1,66 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://chazzasblog/schema/about.schema.json",
+  "title": "About",
+  "description": "Schema for content/about.json - the single About/bio object shown on the homepage.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["heading", "body", "socialLinks"],
+  "properties": {
+    "heading": {
+      "type": "string",
+      "minLength": 1
+    },
+    "body": {
+      "type": "string",
+      "description": "Markdown source, NOT pre-rendered HTML.",
+      "minLength": 1
+    },
+    "tagline": {
+      "type": "string",
+      "description": "Short one-liner shown next to the site title in the header."
+    },
+    "photo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["src", "alt"],
+      "properties": {
+        "src": { "type": "string", "minLength": 1 },
+        "alt": { "type": "string", "minLength": 1 }
+      }
+    },
+    "socialLinks": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["label", "url", "type"],
+        "properties": {
+          "label": { "type": "string", "minLength": 1 },
+          "url": { "type": "string", "minLength": 1 },
+          "type": {
+            "type": "string",
+            "enum": ["email", "linkedin", "github", "twitter", "other"]
+          }
+        }
+      },
+      "allOf": [
+        {
+          "contains": {
+            "type": "object",
+            "properties": { "type": { "const": "email" } },
+            "required": ["type"]
+          }
+        },
+        {
+          "contains": {
+            "type": "object",
+            "properties": { "type": { "const": "linkedin" } },
+            "required": ["type"]
+          }
+        }
+      ]
+    }
+  }
+}
