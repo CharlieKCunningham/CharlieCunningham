@@ -34,6 +34,13 @@ jobs:
 
       - name: Build site
         run: npm run build
+        env:
+          # GitHub Pages *project* sites are served at
+          # https://<user>.github.io/<repo>/, not the domain root, so the
+          # build needs to know that subpath to prefix its asset/article
+          # URLs with. Derived automatically from the repo name - never
+          # needs to be hardcoded or updated if the repo is renamed.
+          SITE_BASE_PATH: /${{ github.event.repository.name }}
 
       - name: Upload build output
         uses: actions/upload-pages-artifact@v3

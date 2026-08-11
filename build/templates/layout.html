@@ -6,19 +6,19 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; object-src 'none'; base-uri 'self';">
   <title>{{PAGE_TITLE}}</title>
   <meta name="description" content="{{PAGE_DESCRIPTION}}">
-  <link rel="icon" href="/favicon.ico">
-  <link rel="manifest" href="/site.webmanifest">
-  <link rel="stylesheet" href="/css/variables.css">
-  <link rel="stylesheet" href="/css/base.css">
-  <link rel="stylesheet" href="/css/layout.css">
-  <link rel="stylesheet" href="/css/components.css">
-  <link rel="stylesheet" href="/css/responsive.css">
+  <link rel="icon" href="{{BASE_PATH}}/favicon.ico">
+  <link rel="manifest" href="{{BASE_PATH}}/site.webmanifest">
+  <link rel="stylesheet" href="{{BASE_PATH}}/css/variables.css">
+  <link rel="stylesheet" href="{{BASE_PATH}}/css/base.css">
+  <link rel="stylesheet" href="{{BASE_PATH}}/css/layout.css">
+  <link rel="stylesheet" href="{{BASE_PATH}}/css/components.css">
+  <link rel="stylesheet" href="{{BASE_PATH}}/css/responsive.css">
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to content</a>
   <header class="site-header">
     <div class="site-header__inner">
-      <a class="site-title" href="/">Chazza's Blog</a>
+      <a class="site-title" href="{{BASE_PATH}}/">Chazza's Blog</a>
       {{{NAV_HTML}}}
       {{{CONTACT_LINKS_HTML}}}
     </div>
@@ -27,6 +27,6 @@
     {{{PAGE_CONTENT_HTML}}}
   </main>
   {{{FOOTER_HTML}}}
-  <script src="/js/main.js" defer></script>
+  <script src="{{BASE_PATH}}/js/main.js" defer></script>
 </body>
 </html>

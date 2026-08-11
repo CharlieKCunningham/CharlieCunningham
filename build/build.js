@@ -15,6 +15,33 @@ const { formatDateDisplay, formatDateIso } = require('./lib/formatDate');
 const INCLUDE_DRAFTS = process.env.INCLUDE_DRAFTS === '1';
 
 // ---------------------------------------------------------------------------
+// Base path support (GitHub Pages *project* sites are served under
+// https://<user>.github.io/<repo>/ , not the domain root, so every
+// root-absolute URL the site emits - CSS/JS/favicon/manifest links, article
+// URLs, image src attributes - must be prefixed with that subpath or they
+// 404. Set SITE_BASE_PATH (e.g. "/CharlieCunningham") when building for that
+// kind of deployment; leave unset for local preview (served at the root) or
+// for a user/org page / custom domain (also served at the root).
+// ---------------------------------------------------------------------------
+
+function normalizeBasePath(raw) {
+  if (!raw) return '';
+  let p = raw.trim();
+  if (!p || p === '/') return '';
+  if (!p.startsWith('/')) p = '/' + p;
+  if (p.endsWith('/')) p = p.slice(0, -1);
+  return p;
+}
+
+const BASE_PATH = normalizeBasePath(process.env.SITE_BASE_PATH || '');
+
+// Prepends BASE_PATH to a root-relative path (one starting with '/').
+function withBase(rootRelativePath) {
+  if (rootRelativePath === '/') return BASE_PATH ? `${BASE_PATH}/` : '/';
+  return BASE_PATH + rootRelativePath;
+}
+
+// ---------------------------------------------------------------------------
 // Template loading helpers
 // ---------------------------------------------------------------------------
 
@@ -47,7 +74,7 @@ const PARTIAL = {
 // ---------------------------------------------------------------------------
 
 function renderNavHtml() {
-  return render(PARTIAL.nav, {});
+  return render(PARTIAL.nav, { BASE_PATH });
 }
 
 function renderFooterHtml() {
@@ -69,7 +96,7 @@ function renderContactLinksHtml(socialLinks) {
 
 function renderCoverImageHtml(coverImage) {
   if (!coverImage) return '';
-  const src = escapeHtml(coverImage.src);
+  const src = escapeHtml(withBase(coverImage.src));
   const alt = escapeHtml(coverImage.alt);
   return `<img class="cover-image" src="${src}" alt="${alt}" loading="lazy">`;
 }
@@ -84,13 +111,14 @@ function renderTagsHtml(tags) {
 }
 
 function articleUrl(slug) {
-  return `/articles/${slug}/`;
+  return withBase(`/articles/${slug}/`);
 }
 
 function renderLayout({ pageTitle, pageDescription, pageContentHtml, about }) {
   return render(TPL.layout, {
     PAGE_TITLE: pageTitle,
     PAGE_DESCRIPTION: pageDescription,
+    BASE_PATH,
     NAV_HTML: renderNavHtml(),
     CONTACT_LINKS_HTML: renderContactLinksHtml(about.socialLinks),
     PAGE_CONTENT_HTML: pageContentHtml,
@@ -265,7 +293,7 @@ function main() {
   const notFoundContentHtml = `
     <section class="not-found">
       <h1>Page not found</h1>
-      <p>Sorry, that page doesn't exist. <a href="/">Go back home</a>.</p>
+      <p>Sorry, that page doesn't exist. <a href="${BASE_PATH ? `${BASE_PATH}/` : '/'}">Go back home</a>.</p>
     </section>
   `;
   const notFoundHtml = renderLayout({

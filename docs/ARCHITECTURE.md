@@ -35,6 +35,15 @@ Run the build with `npm install && npm run build`. Output goes to `dist/`.
 Set `INCLUDE_DRAFTS=1` in the environment to include `draft: true` articles
 (useful for local preview; the production build should NOT set this).
 
+Set `SITE_BASE_PATH` (e.g. `/CharlieCunningham`) when building for a GitHub
+Pages *project* site, which is served at `https://<user>.github.io/<repo>/`
+rather than the domain root - every root-absolute URL the build emits
+(CSS/JS/favicon/manifest links, article URLs, image `src`) is prefixed with
+it via `build/build.js`'s `withBase()` helper and the `{{BASE_PATH}}`
+template token. The GitHub Actions workflow sets this automatically from the
+repo name; leave it unset for local preview or a user/org page / custom
+domain (both served at the root).
+
 ## Content schemas
 
 ### `content/articles/*.json` (validated against `schema/article.schema.json`)
