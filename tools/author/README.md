@@ -38,11 +38,30 @@ Open `http://127.0.0.1:3001/` in a browser to use the form.
 
 ### Windows: launch by double-clicking
 
-`Launch Author Tool.bat` in this folder starts the server in its own window
-and opens `http://127.0.0.1:3001` in your default browser. This is what a
-Desktop shortcut should point to. If Node.js isn't on your PATH it prints a
-clear error instead of doing nothing. Close the server's console window
-when you're done for the day.
+There's a Desktop shortcut ("Chazza's Blog - New Article", with its own
+amber icon) that boots the whole thing with one click: it silently starts
+the server and opens the tool in a chromeless app window (no tabs/address
+bar) rather than a normal browser tab. If Node.js can't be found, you'll get
+a clear popup instead of nothing happening.
+
+Two files make this work, in this folder:
+
+- `launch-silent.vbs` - what the Desktop shortcut actually points to. Checks
+  Node.js is available (showing a popup if not), then runs the `.bat` below
+  with no visible window at all.
+- `Launch Author Tool.bat` - starts the server (in its own minimized console
+  window, so you can still peek at logs or close it) and opens
+  `http://127.0.0.1:3001` in an app-mode Edge/Chrome window, falling back to
+  a normal browser tab if neither is installed. Useful to run directly
+  (double-click it, or `node server.js` from a terminal) if you want to see
+  server output while debugging.
+
+Either way, close the server's console window when you're done for the day.
+
+You can also **install** the tool as a proper Windows app instead of (or as
+well as) using the Desktop shortcut: with it open in Edge/Chrome, click the
+install icon (⊕) in the address bar. That adds its own Start Menu entry and
+taskbar icon, independent of the shortcut/server process.
 
 ## Two views
 
