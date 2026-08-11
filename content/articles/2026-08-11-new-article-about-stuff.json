@@ -2,9 +2,9 @@
   "slug": "new-article-about-stuff",
   "title": "New Article about stuff",
   "publishedAt": "2026-08-11T19:26",
-  "updatedAt": "2026-08-11T21:33",
+  "updatedAt": "2026-08-11T21:37",
   "summary": "This is a breif summary",
-  "body": "This is the main body of text \r\n This is me updating the website\r\nAnother Update",
+  "body": "This is the main body of text \r\n This is me updating the website\r\nAnother Update\r\n\r\nWOAH",
   "coverImage": {
     "src": "/images/articles/new-article-about-stuff/screenshot-2026-07-31-161723.png",
     "alt": "this is an image"
