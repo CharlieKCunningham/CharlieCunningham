@@ -21,18 +21,60 @@ const execFileAsync = util.promisify(execFile);
 
 const GIT_EXEC_OPTS = { cwd: ROOT_DIR, windowsHide: true, maxBuffer: 10 * 1024 * 1024 };
 
+// On Windows, installing Git updates the system PATH, but a process that was
+// already running (or one spawned by a shell/Explorer session that started
+// before the install) inherits a stale copy and can't find "git" even
+// though it works fine from a brand-new terminal. Rather than surface that
+// as a misleading "not a git repository" error, or require Charlie to
+// reboot before he can publish, fall back to Git for Windows' standard
+// install locations.
+const WINDOWS_GIT_FALLBACKS = [
+  'C:\\Program Files\\Git\\cmd\\git.exe',
+  'C:\\Program Files\\Git\\bin\\git.exe',
+  'C:\\Program Files (x86)\\Git\\cmd\\git.exe',
+];
+
+let cachedGitCommand = null;
+
+async function resolveGitCommand() {
+  if (cachedGitCommand) return cachedGitCommand;
+
+  const candidates = process.platform === 'win32' ? ['git', ...WINDOWS_GIT_FALLBACKS] : ['git'];
+  for (const candidate of candidates) {
+    try {
+      // eslint-disable-next-line no-await-in-loop
+      await execFileAsync(candidate, ['--version'], { windowsHide: true });
+      cachedGitCommand = candidate;
+      return candidate;
+    } catch (err) {
+      // Try the next candidate. A candidate that exists but fails for some
+      // other reason will surface that same error again on the real call
+      // below, since we fall through to plain "git" if nothing worked.
+    }
+  }
+  cachedGitCommand = 'git';
+  return cachedGitCommand;
+}
+
 async function runGit(args) {
   try {
-    const { stdout, stderr } = await execFileAsync('git', args, GIT_EXEC_OPTS);
+    const gitCommand = await resolveGitCommand();
+    const { stdout, stderr } = await execFileAsync(gitCommand, args, GIT_EXEC_OPTS);
     return { ok: true, stdout: stdout || '', stderr: stderr || '' };
   } catch (err) {
     return {
       ok: false,
+      notFound: err.code === 'ENOENT',
       error: err.message,
       stdout: typeof err.stdout === 'string' ? err.stdout : '',
       stderr: typeof err.stderr === 'string' ? err.stderr : '',
     };
   }
+}
+
+async function isGitAvailable() {
+  const result = await runGit(['--version']);
+  return result.ok;
 }
 
 async function isGitRepo() {
@@ -63,7 +105,18 @@ const SETUP_HINT =
 /**
  * @returns {Promise<{ ok: true, files: {status:string,path:string}[] } | { ok: false, code: string, errors: string[] }>}
  */
+const GIT_NOT_FOUND_HINT =
+  'The "git" command could not be found by this tool, even though it may be installed. On Windows, a ' +
+  'program that was already running when Git was installed keeps its old PATH and can\'t see it yet. ' +
+  'Try fully closing this tool and reopening it (the Desktop icon); if that still doesn\'t work, sign out ' +
+  'and back in (or restart your computer) so Windows refreshes its PATH, then try again.';
+
 async function getStatus() {
+  const gitAvailable = await isGitAvailable();
+  if (!gitAvailable) {
+    return { ok: false, code: 'GIT_NOT_FOUND', errors: [GIT_NOT_FOUND_HINT] };
+  }
+
   const repoOk = await isGitRepo();
   if (!repoOk) {
     return {
@@ -156,6 +209,11 @@ async function publish({ paths, message, fallbackMessage }) {
     return { ok: false, errors: ['No paths given to publish.'] };
   }
 
+  const gitAvailable = await isGitAvailable();
+  if (!gitAvailable) {
+    return { ok: false, errors: [GIT_NOT_FOUND_HINT] };
+  }
+
   const repoOk = await isGitRepo();
   if (!repoOk) {
     return { ok: false, errors: [`This folder is not a git repository yet. ${SETUP_HINT}`] };
@@ -198,6 +256,7 @@ async function publish({ paths, message, fallbackMessage }) {
 }
 
 module.exports = {
+  isGitAvailable,
   isGitRepo,
   hasRemote,
   getStatus,
